@@ -68,16 +68,18 @@ Vagrant.configure(2) do |config|
    config.vm.provision "shell", inline: <<-SHELL
    curl -sL https://deb.nodesource.com/setup | bash -
    apt-get install -y nodejs
-   sudo npm install -g npm
-   sudo gem install sass
    sudo apt-get install -y chrpath libssl-dev libfontconfig1-dev libxft-dev libpng-dev
+   sudo npm install -g npm
    npm install --global yo bower grunt-cli
+   sudo gem install sass
    wget https://github.com/glenpike/npm-g_nosudo/archive/master.zip
    unzip master.zip
-   cd npm-g_nosudo
-   ./npm-g-nosudo.sh -y
+   cd npm-g_nosudo-master
+   echo -e "\ny\n" | ./npm-g-no-sudo.sh
    cd ../
-   rm -rf npm-g_nosudo
+   rm -rf npm-g_nosudo-master
    rm master.zip
+   source ~/.bashrc
+   
    SHELL
 end
